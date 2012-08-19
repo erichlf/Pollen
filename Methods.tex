@@ -1,0 +1,134 @@
+In this study an agent-based model simulates the pollination of trees in a forest. The model assumes
+continuous space and consists of two interacting agents; \emph{animals} and \emph{plants}.  We
+consider different plant densities to determine what effect density has on the distribution of
+pollen.  The plants have a limited supply of pollen that can be gathered by animals.  Animals
+transport the pollen across the environment using particular movement rules to deliver the pollen to
+other plants.  The animals movement is determined by a corrolated random walk.  At each step of
+their movement they search the local neighborhood for plants where they will collect additional
+pollen and deposit pollen.
+
+\subsection{Movement} 
+  Movement in the model is centered on the animals since plants do not move.
+  Pollen is carried by the animals from one plant to another. At each step the movement of an animals
+  in conducted in two stages:  {\it searching} and {\it movement}.  First, the animal checks the a
+  neighborhood of radius $r$ to see if there are any trees within the neighborhood.  If there are one
+  or more trees then the animal chooses the closest tree.  It there are two or more trees equidistant
+  from the animals current location then one of those trees are chosen randomly.  The animal then
+  moves to the location of the chosen tree.
+
+  If there are no trees within a distance $r$ from the current location of the animal, the animal then
+  moves according to a corrolated random walk.  For the correlated random walk the animal chooses a
+  direction based on a probability distribution in which the higher probabilities are centered about
+  the animal's current direction, see Figure \ref{TurningAngle}.  The animal then takes a step of
+  length between 0 and 1 distributed uniformly in the new chosen direction.  This length is denoted by
+  $s_j^{(i)}$, which is the $j^{th}-$step taken by the $i^{th}$ animal.
+  \begin{figure}[H]\label{TurningAngle}
+    \begin{center}
+    \includegraphics[width=1.0\textwidth]{TADistribution.pdf}
+    \end{center}
+    \caption{Turning Angle for (a) uniform distribution and (b) depiction
+    of what a path may look like.}
+  \end{figure}
+  Alternatively, if the animal is already at a plant then the animal picks a random direction
+  uniformly and then takes a step of size $r+1.0$.  This will ensure that the animal will not
+  immediately return to the same plant on the very next step.
+
+\subsection{\emph{Pollination}}
+  When an animal is on a plant, it collects pollen, distributes pollen, and consumes food. Each
+  plant contains a number of flowers, $\phi$, from which an animal may obtain pollen. When an animal
+  visits a plant it picks up pollen from one or more flowers. The number of flowers from which an
+  animal can obtain pollen is determined by the total number of flowers on a plant, the fraction of
+  flowers in bloom at any one time ($a$), the number of times ($j$) the plant has previously been
+  visited by an animal, and the maximum fraction of flowers available for pollination ($\eta$). The
+  formula for the number of total flowers available for visitation during a $k^{th}$ visit to the
+  $j^{th}$ plant ($f_{j,k}$) is given by
+  \begin{equation}\label{flowers}
+    f_{j,k} = \phi \cdot a \cdot \eta^k.
+  \end{equation}
+
+  It is assumed that the amount of food eaten and the amount of pollen collected is proportional to
+  the number of visited flowers. An animal collects pollen and eats from every flower that it
+  visits, and so the amount of pollen collected and the amount of food eaten is proportional to the
+  equation (\ref{flowers}). Let $f^{\left(i\right)}_{j,k}$ be the number of flowers visited by the
+  $i^{th}$ animal during the $k^{th}$ visit to the $j^{th}$ plant then the amount of polllen/nectar
+  in the $i^{th}$ animal's stomach after $m$ plant visits is given by
+  \[
+    c^{\left(i\right)}_m = \sum_{j=0}^{m} \beta f^{\left(i\right)}_{j,k},
+  \]
+  where $\beta$ is the proportionallity constant for the amount of pollen collected at a plant.
+  Each animal has a maximum amount of food they will ingest, $c_{max}$, at which time they will stop
+  search for food and return to their lair. %The total amount of food that an animal can eat is
+  limited
+%by the stomach size, $c_{max}$.
+
+  The fraction, $\alpha$, of all flowers are pollinated, and the associated probability that a
+  flower is pollinated, $\rho$, are related by the equation,
+  \begin{equation} \label{Prob}
+    \alpha = \rho \cdot \hat{f}_k.
+  \end{equation}
+  Using equation (\ref{limit}) and (\ref{Prob}) we can determine the probability that a flower is
+  pollinated, $\rho$, by the formula
+  \[
+    \rho = \frac{\alpha}{\phi} \cdot \frac{1 - \eta}{a \cdot \eta}.
+  \]
+
+  When a flower is pollinated it must determined which previous plant donated the pollen. Each
+  flower visited is recorded and is available to pollinate the current flower, except those flowers
+  that are on the same plant. Self- pollination, is not considered, because the likelyhood of
+  self-pollination is low due to mechanisms that impedes self-pollination. Each flower considered
+  has an equal likelihood of pollinating the current flower.
+
+\subsection{Time and Stopping Criteria}
+  The velocity an animal travels ($v$) is assumed to be constant, as well as the time spent on a
+  plant ($t_{plant}$).  The travel time for an animal is then given by the formula
+  \[
+    t^{\left(i\right)} = \frac{s^{\left(i\right)}}{v} + T^{\left(i\right)} \cdot t_{plant},
+  \]
+  where $T^{\left(i\right)}$ is the number of plants visited by the $i^{th}$ animal. If we let the
+  maximum allowable travel time be $t_{max}$, then once $t^{\left(i\right)} \geq t_{max}$ or
+  $c^{\left(i\right)}_m \geq c_{max}$ the animal is removed from the simulation. $t_{max}$ is based
+  on the optimal searching time during the day.  When there are no animals left the simulation
+  terminates.
+
+\subsection{Model Statistics}
+
+  To best explore the inherent differences between biotic and abiotic pollination this study focuses
+  on the effects of movement as well as the effects of plant density.  
+  \begin{table}[h]\label{eqn}
+    \begin{tabular}{|l|l|}
+      \hline
+      % after \\: \hline or \cline{col1-col2} \cline{col3-col4} ...
+      Measure & Equation \\ \hline   \hline
+      Average Path Distance & $\displaystyle\bar{s} = \frac{1}{b} \sum_{i=1}^b \sum_{j=1}^n s^{\left(i\right)}_j$ \\ \hline
+      Average Maximum Distance & $\displaystyle \bar{M} = \frac{1}{b} \sum_{i=1}^b \max_j \sqrt{\left(x^{\left(i\right)}_{1,0}
+    - x^{\left(i\right)}_{1,j}\right)^2 +
+          \left(x^{\left(i\right)}_{2,0} -
+    x^{\left(i\right)}_{2,j}\right)^2}  $ \\  \hline
+      Average Pollination Distance & $\displaystyle \bar{p} = \frac{1}{n} \sum_{i=1}^{n} \left(
+    \frac{1}{\tau^{\left(i\right)}} \sum_{j=1}^{\tau^{\left(i\right)}}
+    \sqrt{\left(x^{\left(i\right)}_1 -
+    x^{\left(j\right)}_1\right)^2 + \left(x^{\left(i\right)}_2 -
+        x^{\left(j\right)}_2\right)^2}
+        \right)  $ \\  \hline
+      Average Maximum Pollination Distance & $\displaystyle \bar{P} = \frac{1}{n} \sum_{i=1}^{n} \max_j \sqrt{\left(x^{\left(i\right)}_1 -
+    x^{\left(j\right)}_1\right)^2 + \left(x^{\left(i\right)}_2 -
+        x^{\left(j\right)}_2\right)^2}$ \\  \hline
+      Average Weighted Diversity of Fathers & $\displaystyle E = \frac{1}{n} \sum_{i=1}^n 1/\frac{1}{\left(\tau^{\left(i\right)}\right)^2}
+    \sum_{j=1}^{\Delta\tau^{\left(i\right)}} F^2_{j,i} $ \\
+      \hline
+    \end{tabular}
+    \caption{Equations}
+  \end{table}
+  In order to quantify these differences we measure statistics that are inherent of the animals:
+  \emph{Average Path Distance}, \emph{Average Maximum Distance}, and those of the plant:
+  \emph{Average Pollination Distance}, \emph{Average Maximum Pollination Distance}, \emph{Average
+  Weighted Diversity of Fathers}.  The calculations of these statistics are given in the Table
+  \ref{eqn}.
+
+  In these equations it is assumed that $b$ is the total number of animals, $n$ is the total number
+  of plants, $(x_{1,0}^{(i)},x_{2,0}^{(i)})$ is the starting location of the $i^{th}$ animal,
+  $(x_{1,j}^{(i)},x_{2,j}^{(i)})$ is the location of the $i^{th}$ animal after $j$ steps,
+  $\tau^{(i)}$ is the total number of seeds for the $i^{th}$ plant, $\Delta\tau^{(i)}$ is the number
+  of different fathers contributing pollen to the $i^{th}$ plant, and $F_{j,i}$ is the number of
+  times the $j^{th}$ father contributed pollen to the $i^{th}$ plant.
+
