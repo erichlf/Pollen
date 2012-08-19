@@ -1,0 +1,52 @@
+runs: 1
+PlantDensity {
+ set_list: 0.01 0.03 0.05 0.07 0.10 0.15
+ {
+  runs: 10
+  AMT {
+   set_list: 0 15 30 45 60 90 135 180
+  }
+ }
+}
+A {
+ set: 0.2
+}
+R {
+ set: 0.75
+}
+Stomach {
+ set: 7500000
+}
+Flowers {
+ set: 100
+}
+PollenProb {
+ set: 0.4286
+}
+Speed {
+ set: 1.0
+}
+DisplayGUI {
+ set_boolean: false
+}
+AppendFile {
+ set_boolean: true
+}
+NumAnimals {
+ set: 1000
+}
+SearchRadius {
+ set: 1.0
+}
+Height {
+ set: 101
+}
+Width {
+ set: 101
+}
+MaxTime {
+ set: 1200
+}
+PlantTime {
+ set: 100
+}
