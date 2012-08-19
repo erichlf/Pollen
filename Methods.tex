@@ -8,16 +8,16 @@ their movement they search the local neighborhood for plants where they will col
 pollen and deposit pollen.
 
 \subsection{Movement} 
-  Movement in the model is centered on the animals since plants do not move.
-  Pollen is carried by the animals from one plant to another. At each step the movement of an animals
-  in conducted in two stages:  {\it searching} and {\it movement}.  First, the animal checks the a
-  neighborhood of radius $r$ to see if there are any trees within the neighborhood.  If there are one
-  or more trees then the animal chooses the closest tree.  It there are two or more trees equidistant
-  from the animals current location then one of those trees are chosen randomly.  The animal then
-  moves to the location of the chosen tree.
+  Movement in the model is centered on the animals, since plants do not move.  Pollen is carried by
+  the animals from one plant to another. At each step the movement of an animals in conducted in two
+  stages: \emph{ searching} and \emph{ movement}.  First, the animal checks a neighborhood of radius
+  $r$ to see if there are any trees within the neighborhood.  If there are one or more trees, 
+  the animal chooses the closest tree.  It there are two or more trees equidistant from the animals
+  current location then one of those trees are chosen randomly.  The animal then moves to the
+  location of the chosen tree.
 
   If there are no trees within a distance $r$ from the current location of the animal, the animal then
-  moves according to a corrolated random walk.  For the correlated random walk the animal chooses a
+  moves according to a correlated random walk.  For the correlated random walk the animal chooses a
   direction based on a probability distribution in which the higher probabilities are centered about
   the animal's current direction, see \autoref{TurningAngle}.  The animal then takes a step of
   length between 0 and 1 distributed uniformly in the new chosen direction.  This length is denoted by
@@ -29,11 +29,12 @@ pollen and deposit pollen.
     \caption{Turning Angle for (a) uniform distribution and (b) depiction
     of what a path may look like.}
   \end{figure}
-  Alternatively, if the animal is already at a plant then the animal picks a random direction
-  uniformly and then takes a step of size $r+1.0$.  This will ensure that the animal will not
-  immediately return to the same plant on the very next step.
 
-\subsection{\emph{Pollination}}
+  Alternatively, if the animal is already at a plant, the animal picks a random direction uniformly
+  and takes a step of size $r+1.0$.  This will ensure that the animal will not immediately return to
+  the same plant on the very next step.
+
+\subsection{Pollination}
   When an animal is on a plant, it collects pollen, distributes pollen, and consumes food. Each
   plant contains a number of flowers, $\phi$, from which an animal may obtain pollen. When an animal
   visits a plant it picks up pollen from one or more flowers. The number of flowers from which an
@@ -50,13 +51,13 @@ pollen and deposit pollen.
   the number of visited flowers. An animal collects pollen and eats from every flower that it
   visits, and so the amount of pollen collected and the amount of food eaten is proportional to the
   equation \eqref{flowers}. Let $f^{\left(i\right)}_{j,k}$ be the number of flowers visited by the
-  $i^{th}$ animal during the $k^{th}$ visit to the $j^{th}$ plant then the amount of polllen/nectar
+  $i^{th}$ animal during the $k^{th}$ visit to the $j^{th}$ plant then the amount of pollen/nectar
   in the $i^{th}$ animal's stomach after $m$ plant visits is given by
   \begin{equation}
     c^{\left(i\right)}_m = \sum_{j=0}^{m} \beta f^{\left(i\right)}_{j,k},
     \label{limit}
   \end{equation}
-  where $\beta$ is the proportionallity constant for the amount of pollen collected at a plant.
+  where $\beta$ is the proportionality constant for the amount of pollen collected at a plant.
   Each animal has a maximum amount of food they will ingest, $c_{max}$, at which time they will stop
   search for food and return to their lair. %The total amount of food that an animal can eat is
   limited
@@ -75,7 +76,7 @@ pollen and deposit pollen.
 
   When a flower is pollinated it must determined which previous plant donated the pollen. Each
   flower visited is recorded and is available to pollinate the current flower, except those flowers
-  that are on the same plant. Self- pollination, is not considered, because the likelyhood of
+  that are on the same plant. Self- pollination, is not considered, because the likelihood of
   self-pollination is low due to mechanisms that impedes self-pollination. Each flower considered
   has an equal likelihood of pollinating the current flower.
 
@@ -92,7 +93,6 @@ pollen and deposit pollen.
   terminates.
 
 \subsection{Model Statistics}
-
   To best explore the inherent differences between biotic and abiotic pollination this study focuses
   on the effects of movement as well as the effects of plant density.  
   \begin{table}[h]
