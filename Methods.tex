@@ -19,12 +19,12 @@ pollen and deposit pollen.
   If there are no trees within a distance $r$ from the current location of the animal, the animal then
   moves according to a corrolated random walk.  For the correlated random walk the animal chooses a
   direction based on a probability distribution in which the higher probabilities are centered about
-  the animal's current direction, see Figure \ref{TurningAngle}.  The animal then takes a step of
+  the animal's current direction, see \autoref{TurningAngle}.  The animal then takes a step of
   length between 0 and 1 distributed uniformly in the new chosen direction.  This length is denoted by
   $s_j^{(i)}$, which is the $j^{th}-$step taken by the $i^{th}$ animal.
   \begin{figure}[H]\label{TurningAngle}
     \begin{center}
-    \includegraphics[width=1.0\textwidth]{TADistribution.pdf}
+    \includegraphics[scale=0.5,trim=0 30 150 510]{TADistribution.pdf}
     \end{center}
     \caption{Turning Angle for (a) uniform distribution and (b) depiction
     of what a path may look like.}
@@ -95,28 +95,31 @@ pollen and deposit pollen.
   To best explore the inherent differences between biotic and abiotic pollination this study focuses
   on the effects of movement as well as the effects of plant density.  
   \begin{table}[h]\label{eqn}
+  \setlength{\extrarowheight}{10pt}
+    {\footnotesize
     \begin{tabular}{|l|l|}
       \hline
       % after \\: \hline or \cline{col1-col2} \cline{col3-col4} ...
-      Measure & Equation \\ \hline   \hline
-      Average Path Distance & $\displaystyle\bar{s} = \frac{1}{b} \sum_{i=1}^b \sum_{j=1}^n s^{\left(i\right)}_j$ \\ \hline
-      Average Maximum Distance & $\displaystyle \bar{M} = \frac{1}{b} \sum_{i=1}^b \max_j \sqrt{\left(x^{\left(i\right)}_{1,0}
+      Measure & Equation \\[8pt] \hline   \hline
+      Average Path Distance & $\bar{s} = \frac{1}{b} \sum_{i=1}^b \sum_{j=1}^n s^{\left(i\right)}_j$ \\[8pt] \hline
+      Average Maximum Distance & $ \bar{M} = \frac{1}{b} \sum_{i=1}^b \max_j \sqrt{\left(x^{\left(i\right)}_{1,0}
     - x^{\left(i\right)}_{1,j}\right)^2 +
           \left(x^{\left(i\right)}_{2,0} -
-    x^{\left(i\right)}_{2,j}\right)^2}  $ \\  \hline
-      Average Pollination Distance & $\displaystyle \bar{p} = \frac{1}{n} \sum_{i=1}^{n} \left(
+    x^{\left(i\right)}_{2,j}\right)^2}  $ \\[8pt] \hline
+      Average Pollination Distance & $ \bar{p} = \frac{1}{n} \sum_{i=1}^{n} \left(
     \frac{1}{\tau^{\left(i\right)}} \sum_{j=1}^{\tau^{\left(i\right)}}
     \sqrt{\left(x^{\left(i\right)}_1 -
     x^{\left(j\right)}_1\right)^2 + \left(x^{\left(i\right)}_2 -
         x^{\left(j\right)}_2\right)^2}
-        \right)  $ \\  \hline
-      Average Maximum Pollination Distance & $\displaystyle \bar{P} = \frac{1}{n} \sum_{i=1}^{n} \max_j \sqrt{\left(x^{\left(i\right)}_1 -
+        \right)  $ \\[12pt]  \hline
+      Average Maximum Pollination Distance & $ \bar{P} = \frac{1}{n} \sum_{i=1}^{n} \max_j \sqrt{\left(x^{\left(i\right)}_1 -
     x^{\left(j\right)}_1\right)^2 + \left(x^{\left(i\right)}_2 -
-        x^{\left(j\right)}_2\right)^2}$ \\  \hline
-      Average Weighted Diversity of Fathers & $\displaystyle E = \frac{1}{n} \sum_{i=1}^n 1/\frac{1}{\left(\tau^{\left(i\right)}\right)^2}
-    \sum_{j=1}^{\Delta\tau^{\left(i\right)}} F^2_{j,i} $ \\
+        x^{\left(j\right)}_2\right)^2}$ \\[8pt]  \hline
+      Average Weighted Diversity of Fathers & $ E = \frac{1}{n} \sum_{i=1}^n 1/\frac{1}{\left(\tau^{\left(i\right)}\right)^2}
+      \sum_{j=1}^{\Delta\tau^{\left(i\right)}} F^2_{j,i} $ \\[8pt]
       \hline
     \end{tabular}
+  }
     \caption{Equations}
   \end{table}
   In order to quantify these differences we measure statistics that are inherent of the animals:
