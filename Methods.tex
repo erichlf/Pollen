@@ -49,12 +49,13 @@ pollen and deposit pollen.
   It is assumed that the amount of food eaten and the amount of pollen collected is proportional to
   the number of visited flowers. An animal collects pollen and eats from every flower that it
   visits, and so the amount of pollen collected and the amount of food eaten is proportional to the
-  equation (\ref{flowers}). Let $f^{\left(i\right)}_{j,k}$ be the number of flowers visited by the
+  equation \eqref{flowers}. Let $f^{\left(i\right)}_{j,k}$ be the number of flowers visited by the
   $i^{th}$ animal during the $k^{th}$ visit to the $j^{th}$ plant then the amount of polllen/nectar
   in the $i^{th}$ animal's stomach after $m$ plant visits is given by
-  \[
+  \begin{equation}
     c^{\left(i\right)}_m = \sum_{j=0}^{m} \beta f^{\left(i\right)}_{j,k},
-  \]
+    \label{limit}
+  \end{equation}
   where $\beta$ is the proportionallity constant for the amount of pollen collected at a plant.
   Each animal has a maximum amount of food they will ingest, $c_{max}$, at which time they will stop
   search for food and return to their lair. %The total amount of food that an animal can eat is
@@ -66,7 +67,7 @@ pollen and deposit pollen.
   \begin{equation} \label{Prob}
     \alpha = \rho \cdot \hat{f}_k.
   \end{equation}
-  Using equation (\ref{limit}) and (\ref{Prob}) we can determine the probability that a flower is
+  Using equation \eqref{limit} and \eqref{Prob} we can determine the probability that a flower is
   pollinated, $\rho$, by the formula
   \[
     \rho = \frac{\alpha}{\phi} \cdot \frac{1 - \eta}{a \cdot \eta}.
@@ -94,7 +95,7 @@ pollen and deposit pollen.
 
   To best explore the inherent differences between biotic and abiotic pollination this study focuses
   on the effects of movement as well as the effects of plant density.  
-  \begin{table}[h]\label{eqn}
+  \begin{table}[h]
   \setlength{\extrarowheight}{10pt}
     {\footnotesize
     \begin{tabular}{|l|l|}
@@ -121,12 +122,13 @@ pollen and deposit pollen.
     \end{tabular}
   }
     \caption{Equations}
+    \label{tab:eqn}
   \end{table}
   In order to quantify these differences we measure statistics that are inherent of the animals:
   \emph{Average Path Distance}, \emph{Average Maximum Distance}, and those of the plant:
   \emph{Average Pollination Distance}, \emph{Average Maximum Pollination Distance}, \emph{Average
-  Weighted Diversity of Fathers}.  The calculations of these statistics are given in the Table
-  \ref{eqn}.
+  Weighted Diversity of Fathers}.  The calculations of these statistics are given in the
+  \autoref{tab:eqn}.
 
   In these equations it is assumed that $b$ is the total number of animals, $n$ is the total number
   of plants, $(x_{1,0}^{(i)},x_{2,0}^{(i)})$ is the starting location of the $i^{th}$ animal,
