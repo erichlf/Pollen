@@ -1,60 +1,44 @@
-Pollination is one of the most critical and complicated biological processes on the planet.  It is
-an important part of every ecosystem, and is essential to creating diversity and reproduction within
-plant species.  There are numerous different mechanisms by which pollination occurs.  Some of which
-are abiotic through movement of fluids such as the wind or water, while others are biotic using
-animals, often insects, to move pollen from one plant to another.  Studying this process directly is
-generally impossible if not impractical.  There are indirect methods developed to infer how
-pollination diffuses genes among plants, see .  
+Pollination is a critical component of every ecosystem, is essential to creating and maintaining
+diversity and reproduction, and is required for world crop production \cite{KleinEtAl2007}.  
+There are two main vectors for pollen movement; passive pollination where individual grains are 
+dispersed with through the aid of wind and/or water and activt pollination where an animal (most
+commonly an insect).  Given the size of individual pollen grains, direct monitoring of how pollen 
+is dispersed across the landscape is impractical.  Several indirect approaches have been developed 
+including the use of pollen traps and the application of genetic paternity approaches applied to 
+successfully pollinated seeds \cite{BitzerPatterson1967,StreiffEtAl1999}.  While these 
+approaches are able to quantify the end result of the dispersal process, they provide no information 
+the specifics of the precise transport mechanism, which is critical because different features of 
+the landscape have variable permeability to pollen movement \cite{DyerSork2001,DyerEtAl2012}. In 
+this study, a model is created to simulate animal-mediated dispersion of pollen between plants. 
+These models are used to examine the conseqeunces of movement assumptions and their interactions 
+with variation in plant density.
 
-In this study a model is created to simulate the dispersion of pollen between plants where
-calculations are done to measure the differences between movement assumptions as well as changes in
-plant density.  The model mimics both abiotic and biotic movement in order to compare the two types
-of diffusion.  There are numerous factors which make this critical process complex to understand as
-well as to study.
+Pollen dispersal studies, for both abiotic and biotic pollen dispersal, have assumed that the 
+dispersal process is one of random diffusion.  While this may be a good assumption for passively 
+pollinated species, there is little evidence that animals randomly diffuse across the landscape
+during pollination \cite{LevinKerster}.  In fact, there are several examples of animal pollinators
+exhibiting via \emph{trap line} behavior \cite[e.g., repeated sequential visits to individual 
+plants]{OhashiThomson}. Even for pollinator species that do not trapline, their movement patterns
+do not resemble pure diffusion \cite{Cresswell03}. One approach being applied to describe animal
+movement is through the use of correlated random walk (CRW).  In these models, directionality is 
+not random but directionality and distance are based on the distribution derived from the movement 
+at the previous time step.  Models based upon CRW can have been applied to a wide range of animal
+movement processes across varying ecological contexts \cite{Bartumeus07,Byers01}, using 
+deterministic diffusion \cite{Klages}, and fractional Brownian motion \cite{Enriquez} approaches.
 
-Understanding the pollination process may allow for optimization of the number of pollinators used
-for crop pollination, thereby reducing cost to farmers. Additionally, a better understanding of the
-pollination process can lead to the prevention of cross pollination of genetically modified plant
-species and non-genetically modified plant species.
-
-Pollen dispersal studies, for both abiotic and biotic pollen dispersal, have focused primarily on
-purely random diffusion processes, while this may be a good assumption for species pollinated by
-wind, it is most likely an over simplification for species that are pollinated by animals
-\cite{Chan}. A purely random diffusion process in two dimensions accurately predicts pollen
-dispersal at a particular time, but only for a purely random walk \cite{Byers01}.
-
-Pollen movement via biotic means may not be a purely random process and therefore would not diffuse
-in a purely random fashion. In fact, there are several examples of pollinating animals that exhibit
-\emph{trap line} behavior \cite{Chan}. That is, they follow a particular route as they collect
-pollen.  Thus the movement of animals as they carry pollen may follow more direct paths and
-therefore would not result in a purely random diffusion process \cite{Cresswell03}. Such behaviors
-result in dispersal that does not mimic a purely random walk. The movement of animals can be
-described as a correlated random walk (CRW), where the correlation is based on the distribution and
-magnitude of random turning angles. In this way the previous direction of travel influences the
-direction of travel for the next step.
-
-A purely random walk can be used to model a purely random diffusion process such as Brownian motion
-\cite{Codling}. While a CRW can be used as a general model of animal movement \cite{Prasad05} and
-have been successfully used to explore the movement of animals in varying ecological contexts
-\cite{Bartumeus07}. CRW models have been used to model the dispersal of bark beetles, Coleoptera:
-Scolytidae \cite{Byers01}, deterministic diffusion \cite{Klages}, and fractional Brownian motion
-\cite{Enriquez}.
-
-An agent-based model (ABM) describing pollen movement via animals as a correlated random walk (CRW)
-is introduced. ABMs consist of agents that interact with each other and their environment. ABMs
-allow for simulations that consist of a large number of interacting parts that would not be easily
-constructed otherwise \cite{Fioretti05}. Agents can represent things such as people, animals,
-organizations, etc. that interact with each other and their environment. The environment in an ABM
-can represent things such as a spatial domain, or a network in which the agents are connected to
-each other \cite{Gilbert}. ABMs have been used in modeling racial segregation, supply chain
-dynamics, and neural networks \cite{Gilbert}.
-
-Consequences of the CRW and the interaction of animals with plants is examined using computer
-simulations. Two animals statistics (\emph{average path distance} and \emph{average maximum
-distance}) and three plant statistics (\emph{average pollination distance}, \emph{average maximum
-pollination distance}, and \emph{average weighted diversity of fathers}) are presented. Turning
-angle and plant density are varied and their effects on animals paths and pollen distribution are
-examined.
+In this paper, an agent-based model (ABM) describing pollen movement via animals as a correlated 
+random walk (CRW) is introduced. This model consist of agents that interact with each other using 
+pre-defined rule sets as they explore their environment. Agent based models allow for simulations 
+that consist of a large number of interacting parts that would not be easily constructed otherwise 
+\cite{Fioretti05}. Agents can represent things such as people, animals, organizations, etc. that 
+interact with each other and their environment. The environment in an ABM can represent things 
+such as a spatial domain, or a network in which the agents are connected to each other 
+\cite{Gilbert}. Using ABMs, the efficacy of CRW apporaches was examined in a system approximating
+plant-pollinator interactions using computer simulations. Two statistics describing pollinator movement
+(\emph{average path distance} and \emph{average maximum distance}) were collected and parameters relevant
+to the plant reproduction (\emph{average pollination distance}, \emph{average maximum
+pollination distance}, and \emph{average weighted diversity of fathers}) are collected and analyzed to
+describe how assumptions about agant movement infleunce plant pollination dynamics.
 
 It is shown that bias can be introduced by describing animal movement as a purely random walk. That
 is, there is a significant difference between the model outcomes for a purely random walk as
