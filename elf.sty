@@ -1,9 +1,22 @@
 \ProvidesPackage{elf}
+\pdfoutput=1
 
-%% AMSLaTeX math environments and symbols
+%below are my standard includes. I don't like ugly preambles so I made this
+%style file instead.
+%it also includes a bunch of shortcuts and various configurations
 \RequirePackage{amsmath,amssymb}
-%\RequirePackage{amsthm}
-\RequirePackage{hyperref}
+\let\theorem\relax
+\let\endtheorem\relax
+\let\corollar\relax
+\let\endcorollary\relax
+\let\lemma\relax
+\let\endlemma\relax
+\let\remark\relax
+\let\endremark\relax
+%\let\proof\relax
+%\let\endproof\relax
+\RequirePackage{amsthm}
+\RequirePackage{float}
 \RequirePackage[normalem]{ulem}
 \RequirePackage{enumerate}
 \RequirePackage{paralist}
@@ -11,19 +24,22 @@
 \RequirePackage{tikz}
 \RequirePackage{gauss}
 \RequirePackage{graphicx}
-\RequirePackage{float}
 \RequirePackage{rotating}
 \RequirePackage{nicefrac}
 \RequirePackage{verbatim}
 \RequirePackage{listings}
 \RequirePackage{color}
-\usepackage{algorithm}
+\RequirePackage{caption}
+\RequirePackage{subcaption}
+\RequirePackage{hyperref}
+\RequirePackage[ruled,noline]{algorithm2e}
+\RequirePackage{multirow}
 
 \lstset{% command to set programming language parameter(s)
 frame=single,
 	showstringspaces=false,
 	showlines=false, %get rid of trailing white lines
-	emptylines=1, %allow blank line 
+	emptylines=1, %allow blank line
 	breaklines=true, %get rid of overflow lines and enter \n
 	numbers=left, %line number
 	numberstyle=\scriptsize, %make line numbers small
@@ -42,6 +58,15 @@ frame=single,
 \newcommand{\tbf}[1]{
 	\textbf{#1}
 }
+\newtheorem{lemma}{Lemma}
+\newtheorem{prop}{Proposition}
+\newtheorem{thm}{Theorem}
+\newtheorem{crlry}{Corollary}
+\newtheorem{remark}{Remark}
+\newcommand{\lemmaautorefname}{Lemma}
+\newcommand{\propautorefname}{Proposition}
+\newcommand{\thmautorefname}{Theorem}
+\newcommand{\crlryautorefname}{Corollary}
 
 %redefine sections for autoref
 \def\chapterautorefname{Chapter}
@@ -70,12 +95,13 @@ frame=single,
 \DeclareMathOperator{\ess}{ess}
 
 %Shorter mathbb
-\newcommand{\C}{\mathbb{C}} 
-\newcommand{\N}{\mathbb{N}} 
-\newcommand{\Q}{\mathbb{Q}} 
-\newcommand{\R}{\mathbb{R}} 
-\newcommand{\Z}{\mathbb{Z}} 
-\newcommand{\I}{\mathbb{I}} 
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\T}{\mathbb{T}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\I}{\mathbb{I}}
 \newcommand{\qid}{\mathbf{1}}
 \newcommand{\qi}{\mathbf{i}}
 \newcommand{\qj}{\mathbf{j}}
