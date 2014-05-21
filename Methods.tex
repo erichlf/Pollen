@@ -11,21 +11,21 @@ pollen.
 
 \subsection{Movement}
 Movement in the model is centered on the pollinators.  Pollen is carried from
-one plant to another.  At each step the movement of a pollinator is conducted in
+one plant to another.  At each step, the behavior of the pollinator consistes in
 two stages: \emph{searching} and \emph{movement}.  First, the pollinator checks
 a neighborhood of radius $r$ to see if there are any plants within the
 neighborhood.  If there are one or more plants, the pollinator chooses the
-closest.  If there are two or more that are equidistant from the pollinator, one
-is randomly chosen.
+closest.  If there are two or more which are equidistant from the pollinator,
+one is randomly chosen.
 
-If there are no plants within a distance $r$ from the current location of the
-pollinator, the pollinators movement is defined using a correlated random walk.
-For the correlated random walk, the pollinator chooses a direction based on a
-probability distribution in which the higher probabilities are centered about
-the their current direction, see \autoref{TurningAngle}.  The pollinator then
-takes a step of length between 0 and 1 distributed uniformly in the new chosen
-direction.  This length is denoted by $s_j^{(i)}$, which is the $j^{th}-$step
-taken by the $i^{th}$ pollinator.
+If there are no plants within a distance $r$, from the current location of the
+pollinator, the pollinators movement is defined using a CRW.  For the CRW, the
+pollinator chooses a direction based on a probability distribution in which the
+higher probabilities are centered about the their current direction, see
+\autoref{fig:TurningAngle}.  The pollinator then takes a step of length between
+zero and one, distributed either uniformly, in the new chosen direction.  This length is
+denoted by $s_j^{(i)}$, which is the $j^{th}$-step taken by the $i^{th}$
+pollinator.
 
 \begin{figure}[h!]
   \begin{center}
@@ -42,78 +42,76 @@ taken by the $i^{th}$ pollinator.
   \end{center}
   \caption{Turning Angle for \ref{sfig:Uniform} uniform distribution,
   \ref{sfig:Normal} normal distribution, and \ref{sfig:TurningAngle} depiction
-  of what a path may look like.}\label{TurningAngle}
+  of what a path may look like.}\label{fig:TurningAngle}
 \end{figure}
 
 Alternatively, if the pollinator is already at a plant, the pollinator picks a
-random direction uniformly and takes a step of size $r+1.0$.  This will ensure
+random direction, uniformly, and takes a step of size $r+1.0$.  This will ensure
 that the pollinator will not immediately return to the same plant on the very
 next step.
 
 \subsection{Pollination}
-When an pollinator is on a plant, it collects pollen, distributes pollen, and
+When a pollinator is on a plant, it collects pollen, distributes pollen, and
 consumes food. Each simulated plant contains a number of flowers, $\phi$, from
-which an pollinator may obtain pollen. When an pollinator visits a plant it
-picks up pollen from one or more flowers. The number of flowers from which an
+which a pollinator may obtain pollen. When a pollinator visits a plant it
+picks up pollen from one or more flowers. The number of flowers from which a
 pollinator can obtain pollen is determined by the total number of flowers on a
 plant, the fraction of flowers in bloom at any one time ($a$), the number of
-times ($j$) the plant has previously been visited by an pollinator, and the
+times ($j$) the plant has previously been visited by a pollinator, and the
 maximum fraction of flowers available for pollination ($\eta$). The formula for
 the number of total flowers available for visitation during a $k^{th}$ visit to
 the $j^{th}$ plant ($f_{j,k}$) is given by
 
-\begin{equation}\label{flowers}
-f_{j,k} = \phi \cdot a \cdot \eta^k.
+\begin{equation}
+  f_{j,k} = \phi \, a \, \eta^k.
+  \label{eqn:flowers}
 \end{equation}
 
-It is assumed that the amount of food eaten and the amount of pollen collected
-is proportional to the number of visited flowers. An pollinator collects pollen
+It is assumed the amount of food eaten and the amount of pollen collected
+is proportional to the number of visited flowers. A pollinator collects pollen
 and eats from every flower that it visits, and so the amount of pollen collected
-and the amount of food eaten is proportional to the equation \eqref{flowers}.
+and the amount of food eaten is proportional to the equation \eqref{eqn:flowers}.
 Let $f^{\left(i\right)}_{j,k}$ be the number of flowers visited by the $i^{th}$
 pollinator during the $k^{th}$ visit to the $j^{th}$ plant then the amount of
 pollen/nectar in the $i^{th}$ pollinator's stomach after $m$ plant visits is
 given by
-
 \begin{equation}
-c^{\left(i\right)}_m = \sum_{j=0}^{m} \beta f^{\left(i\right)}_{j,k},
-\label{limit}
+  c^{\left(i\right)}_m = \sum_{j=0}^{m} \beta f^{\left(i\right)}_{j,k},
+  \label{eqn:limit}
 \end{equation}
-
 where $\beta$ is the proportionality constant for the amount of pollen collected
 at a plant.  Each pollinator has a maximum amount of food they will ingest,
-$c_{max}$, at which time they will stop search for food and return to their
-lair. %The total amount of food that an pollinator can eat is limited
-%by the stomach size, $c_{max}$.
+$c_{\text{max}}$, at which time they will stop search for food and return to their
+lair. %The total amount of food that a pollinator can eat is limited
+%by the stomach size, $c_{\text{max}}$.
 
-The fraction, $\alpha$, of all flowers are pollinated, and the associated
+The fraction, $\alpha$, of all flowers pollinated, and the associated
 probability that a flower is pollinated, $\rho$, are related by the equation,
 \begin{equation} \label{Prob} \alpha = \rho \cdot \hat{f}_k.  \end{equation}
-Using equation \eqref{limit} and \eqref{Prob} we can determine the probability
-that a flower is pollinated, $\rho$, by the formula
-\[
+Using equation \eqref{eqn:limit} and \eqref{Prob} we can determine the
+probability that a flower is pollinated, $\rho$, by the formula
+\begin{equation*}
   \rho = \frac{\alpha}{\phi} \cdot \frac{1 - \eta}{a \cdot \eta}.
-\]
+\end{equation*}
 
-When a flower is pollinated it must determined which previous plant donated the
-pollen. Each flower visited is recorded and is available to pollinate the
+When a flower is pollinated it must be determined which previous plant donated
+the pollen. Each flower visited is recorded and is available to pollinate the
 current flower, except those flowers that are on the same plant. Self-
 pollination, is not considered, because the likelihood of self-pollination is
-low due to mechanisms that impedes self-pollination. Each flower considered has
+low due to mechanisms which impede self-pollination. Each flower considered has
 an equal likelihood of pollinating the current flower.
 
 \subsection{Time and Stopping Criteria}
-The velocity an pollinator travels ($v$) is assumed to be constant, as well as
-the time spent on a plant ($t_{plant}$).  The travel time for an pollinator is
+The velocity a pollinator travels, $v$, is assumed to be constant, as well as
+the time spent on a plant, $t_{\text{plant}}$.  The travel time for a pollinator is
 then given by the formula
-\[
-  t^{\left(i\right)} = \frac{s^{\left(i\right)}}{v} + T^{\left(i\right)} \cdot t_{plant},
-\]
-
+\begin{equation*}
+  t^{\left(i\right)} = \frac{s^{\left(i\right)}}{v} + T^{\left(i\right)} \cdot t_{\text{plant}},
+\end{equation*}
 where $T^{\left(i\right)}$ is the number of plants visited by the $i^{th}$
-pollinator. If we let the maximum allowable travel time be $t_{max}$, then once
-$t^{\left(i\right)} \geq t_{max}$ or $c^{\left(i\right)}_m \geq c_{max}$ the
-pollinator is removed from the simulation. $t_{max}$ is based on the optimal
+pollinator. If we let the maximum allowable travel time be $t_{\text{max}}$, then once
+$t^{\left(i\right)} \geq t_{\text{max}}$ or $c^{\left(i\right)}_m \geq c_{\text{max}}$ the
+pollinator is removed from the simulation. $t_{\text{max}}$ is based on the optimal
 searching time during the day.  When the pollinator leaves the simulation, it is
 terminated.
 
@@ -151,9 +149,9 @@ x^{\left(j\right)}_1\right)^2 + \left(x^{\left(i\right)}_2 -
 \label{tab:eqn}
 \end{table}
 
-In order to quantify these way in which the parameters influence the polliation
-in this system, we recorded \emph{Average Path Distance} and \emph{Average
-Maximum Distance} based upon pollinators directly and \emph{Average Pollination
+In order to quantify the way in which the parameters influence pollination in
+this system, we recorded \emph{Average Path Distance} and \emph{Average Maximum
+Distance} based upon pollinators directly and \emph{Average Pollination
 Distance}, \emph{Average Maximum Pollination Distance}, and \emph{Average
 Weighted Diversity of Fathers} based upon the set of pollen that was deposited
 at individual plants.  The calculations of these statistics are given in the
