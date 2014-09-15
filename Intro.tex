@@ -1,36 +1,63 @@
-Pollination is a critical component of every ecosystem, essential to creating and maintaining
-diversity and reproduction, and required for world crop production \cite{KleinEtAl2007}.
-The two main vectors for pollen movement are abiotic pollination where individual grains are
-dispersed with through the aid of wind and/or water, and biotic pollination where an animal (most
-commonly an insect) carry grains from one individual plant to another.  Given the size of individual pollen grains, direct monitoring of how pollen
-is dispersed across the landscape is impractical.  Several indirect approaches have been developed
-including the use of pollen traps and the application of genetic paternity approaches applied to
-successfully pollinated seeds \cite{BitzerPatterson1967,StreiffEtAl1999}.  While these
-approaches are able to quantify the end result of the dispersal process, they provide no direct information
-the specifics of the transport mechanism.  This information is critical to understanding gene flow for a variety of reasons including
-how to better understand how different features of
-the landscape which have variable permeability affect pollen movement \cite{DyerSork2001,DyerEtAl2012}. In
-this study, we simulate both passive and active dispersion of pollen between plants, and to examine the consequences of movement assumptions and their interactions
+Pollination is a critical component of every ecosystem, essential to creating
+and maintaining diversity and reproduction, and required for world crop
+production \cite{KleinEtAl2007}.  The two main vectors for pollen movement are
+abiotic pollination where individual grains are dispersed with through the aid
+of wind and/or water, and biotic pollination where an animal (most commonly an
+insect) carry grains from one individual plant to another.  Given the size of
+individual pollen grains, direct monitoring of how pollen is dispersed across
+the landscape is impractical.  Several indirect approaches have been developed
+including the use of pollen traps and the application of genetic paternity
+approaches applied to successfully pollinated seeds
+\cite{BitzerPatterson1967,StreiffEtAl1999}.  While these approaches are able to
+quantify the end result of the dispersal process, they provide no direct
+information the specifics of the transport mechanism.  This information is
+critical to understanding gene flow for a variety of reasons including how to
+better understand how different features of the landscape which have variable
+permeability affect pollen movement \cite{DyerSork2001,DyerEtAl2012}. In this
+study, we simulate both passive and active dispersion of pollen between plants,
+and to examine the consequences of movement assumptions and their interactions
 with variation in plant density.
 
-Generally pollen dispersal studies**(add citations here), for both abiotic and biotic pollen dispersal, have assumed that pollen is distributed as a purely random diffusion.  While this may be a good assumption for abiotic
-pollinated species, there is little evidence that animals randomly diffuse across the landscape
-during pollination \cite{LevinKerster}.  In fact, there are several examples of animal pollinators
-exhibiting \emph{trap line} behavior \cite[e.g., repeated sequential visits to individual
-plants]{OhashiThomson}. Even for pollinator species that do not trapline, their movement patterns
-do not resemble pure diffusion \cite{Cresswell03}. One approach to describe animal
-movement is through the use of correlated random walks (CRW).  In these models, directionality is
-not random but instead is based on the distribution about the direction taken
-in the previous step.  Models based upon CRW have been applied to a wide range of animal
-movement processes across varying ecological contexts \cite{Bartumeus07,Byers01}, using
-deterministic diffusion \cite{Klages}, and fractional Brownian motion \cite{Enriquez} approaches.
+Generally pollen dispersal studies**(add citations here), for both abiotic and
+biotic pollen dispersal, have assumed that pollen is distributed as a purely
+random diffusion.  While this may be a good assumption for abiotic pollinated
+species, there is little evidence that animals randomly diffuse across the
+landscape during pollination \cite{LevinKerster}.  In fact, there are several
+examples of animal pollinators exhibiting \emph{trap line} behavior \cite[e.g.,
+repeated sequential visits to individual plants]{OhashiThomson}. Even for
+pollinator species that do not trapline, their movement patterns do not resemble
+pure diffusion \cite{Cresswell03}. One approach to describe animal movement is
+through the use of correlated random walks (CRW).  In these models,
+directionality is not random but instead is based on the distribution about the
+direction taken in the previous step.  Models based upon CRW have been applied
+to a wide range of animal movement processes across varying ecological contexts
+\cite{Bartumeus07,Byers01}, using deterministic diffusion \cite{Klages}, and
+fractional Brownian motion \cite{Enriquez} approaches.
 
-In this paper, an agent-based model (ABM) used to simulate both biotic and abiotic pollination.  The model consist of moving agents, animals, that pollinate static agents, plants.  Movement is modeled using a correlated
-random walk (CRW).  In particular for abiotic pollination we assume there is no correlation between consecutive steps, where for biotic pollination we assume there is correlation.
+In this paper, an agent-based model (ABM) used to simulate both biotic and
+abiotic pollination.  The model consist of moving agents, animals, that
+pollinate static agents, plants.  Movement is modeled using a correlated random
+walk (CRW).  In particular for abiotic pollination we assume there is no
+correlation between consecutive steps, where for biotic pollination we assume
+there is correlation.
 
-To better characterize the differences between biotic and abiotic pollination we examine several statistics describing pollinator movement
-(\emph{average path distance} and \emph{average maximum distance}) and those relevant
-to the plant reproduction (\emph{average pollination distance}, \emph{average maximum
-pollination distance}, and \emph{average weighted diversity of fathers}).  We do this by looking at varying the strength of the correlation between consecutive steps of movement.
+To better characterize the differences between biotic and abiotic pollination we
+examine several statistics describing pollinator movement (\emph{average path
+distance} and \emph{average maximum distance}) and those relevant to the plant
+reproduction (\emph{average pollination distance}, \emph{average maximum
+pollination distance}, and \emph{average weighted diversity of fathers}).  We do
+this by looking at varying the strength of the correlation between consecutive
+steps of movement.
 
-We show that on average pollination events occur at larger distances in moderately and highly correlated random walk compared to purely random walks.  This can results in higher genetic diversity among species with biotic dispersal than with abiotic dispersal. ({\bf Is that observed, Rodney?}) This suggests that care must be taken when studying plants that are pollinated by animals and appropriate models must be utilized. 
+We show that on average pollination events occur at larger distances in
+moderately and highly correlated random walk compared to purely random walks.
+This can results in higher genetic diversity among species with biotic dispersal
+than with abiotic dispersal. ({\bf Is that observed, Rodney?}) This suggests
+that care must be taken when studying plants that are pollinated by animals and
+appropriate models must be utilized. 
+
+We organize the paper in the following way: First in \autoref{sec:Methods} we
+discuss the assumptions and model parameters. Next, in \autoref{sec:Results} we
+discuss the model results, including statistical results. Finally, in
+\autoref{sec:Discussion} we discuss the implication of the model and its results
+on the study of pollination.

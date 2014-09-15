@@ -5,6 +5,9 @@
 \usepackage{array}
 \usepackage{graphicx}
 
+\newcommand{\nsum}{\mathlarger{\sum}}
+\newcommand{\nnsum}{\mathlarger{\nsum}}
+
 %keywords environment
 \def\keywords{\vspace{.5em}
 {\textit{Keywords}:\,\relax%
@@ -13,7 +16,6 @@
 
 \addbibresource{PollenPaper.bib}
 
-%\title{Gene Flow Modelling by Correlated Random Walk}
 \title{Model comparison for abiotic versus biotic pollen dispersal}
 
 \author[1]{Erich L Foster}
@@ -42,13 +44,13 @@
     Gene Flow, Agent Based Modelling, Correlated Random Walk, Pollen
   \end{keywords}
 
-  \section{Introduction}
+  \section{Introduction} \label{sec:Intro}
   \input{Intro.tex}
-  \section{Methods}
+  \section{Methods} \label{sec:Methods}
   \input{Methods.tex}
-  \section{Results}
+  \section{Results} \label{sec:Results}
   \input{Results.tex}
-  \section{Discussion}
+  \section{Discussion} \label{sec:Discussion}
   \input{Discussion.tex}
   \subsection*{Acknowledgments}
     Portions of this research were supported by a National Science Foundation
