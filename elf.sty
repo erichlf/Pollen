@@ -1,5 +1,4 @@
 \ProvidesPackage{elf}
-\pdfoutput=1
 
 %below are my standard includes. I don't like ugly preambles so I made this
 %style file instead.
@@ -16,6 +15,7 @@
 %\let\proof\relax
 %\let\endproof\relax
 \RequirePackage{amsthm}
+\RequirePackage{thmtools}
 \RequirePackage{float}
 \RequirePackage[normalem]{ulem}
 \RequirePackage{enumerate}
@@ -24,6 +24,7 @@
 \RequirePackage{tikz}
 \RequirePackage{gauss}
 \RequirePackage{graphicx}
+\RequirePackage{epsfig}
 \RequirePackage{rotating}
 \RequirePackage{nicefrac}
 \RequirePackage{verbatim}
@@ -34,40 +35,93 @@
 \RequirePackage{hyperref}
 \RequirePackage[ruled,noline]{algorithm2e}
 \RequirePackage{multirow}
-\usepackage{array}
+\RequirePackage{authblk}
+\RequirePackage{geometry}
+
+% Start of 'ignore natbib' hack
+\let\bibhang\relax
+\let\citename\relax
+\let\bibfont\relax
+\let\Citeauthor\relax
+\expandafter\let\csname ver@natbib.sty\endcsname\relax
+% End of 'ignore natbib' hack
+\RequirePackage[backend=bibtex]{biblatex}
+
+\RequirePackage[utf8]{inputenc}
+
+\renewbibmacro{in:}{}
+
+\makeatletter
+  \numdef\blx@maxbibnames{99}
+\makeatother
 
 \lstset{% command to set programming language parameter(s)
-frame=single,
-	showstringspaces=false,
-	showlines=false, %get rid of trailing white lines
-	emptylines=1, %allow blank line
-	breaklines=true, %get rid of overflow lines and enter \n
-	numbers=left, %line number
-	numberstyle=\scriptsize, %make line numbers small
-	stepnumber=1, %line number every line
-	numbersep=5pt,
-	tabsize=2, %set tabs to two spaces
-	basicstyle=\small, % print whole listing small
-	keywordstyle=\bfseries,% green keywords
-	stringstyle=\ttfamily % typewriter type for strings
+    frame=single,
+    showstringspaces=false,
+    showlines=false, %get rid of trailing white lines
+    emptylines=1, %allow blank line
+    breaklines=true, %get rid of overflow lines and enter \n
+    numbers=left, %line number
+    numberstyle=\scriptsize, %make line numbers small
+    stepnumber=1, %line number every line
+    numbersep=5pt,
+    tabsize=2, %set tabs to two spaces
+    basicstyle=\small, % print whole listing small
+    keywordstyle=\bfseries,% green keywords
+    stringstyle=\ttfamily % typewriter type for strings
 }
 
 %shorter bold font
 \newcommand{\mbf}[1]{
-	\mathbf{#1}
+    \mathbf{#1}
 }
 \newcommand{\tbf}[1]{
-	\textbf{#1}
+    \textbf{#1}
 }
-\newtheorem{lemma}{Lemma}
-\newtheorem{prop}{Proposition}
-\newtheorem{thm}{Theorem}
-\newtheorem{crlry}{Corollary}
-\newtheorem{remark}{Remark}
-\newcommand{\lemmaautorefname}{Lemma}
+\newtheorem{lemma}{Lemma}[section]
+\newtheorem{proposition}{Proposition}[section]
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{corollary}{Corollary}[section]
+\newtheorem{remark}{Remark}[section]
+\newtheorem{definition}{Definition}[section]
+\renewcommand{\lemmaautorefname}{Lemma}
 \newcommand{\propautorefname}{Proposition}
-\newcommand{\thmautorefname}{Theorem}
-\newcommand{\crlryautorefname}{Corollary}
+\renewcommand{\theoremautorefname}{Theorem}
+\renewcommand{\corollaryautorefname}{Corollary}
+
+\declaretheoremstyle[
+  spaceabove=6pt, spacebelow=6pt,
+  headfont=\normalfont\bfseries,
+  notefont=\mdseries, notebraces={(}{)},
+  bodyfont=\normalfont,
+  postheadspace=1em,
+  numberwithin=section
+]{exstyle}
+\declaretheorem[style=exstyle]{example}
+\renewcommand{\exampleautorefname}{Example}
+\declaretheoremstyle[
+  spaceabove=6pt, spacebelow=6pt,
+  headfont=\normalfont\bfseries,
+  notefont=\mdseries, notebraces={(}{)},
+  bodyfont=\normalfont,
+  postheadspace=1em,
+  headpunct={},
+  qed=$\blacktriangleleft$,
+  numbered=no
+]{solstyle}
+\declaretheorem[style=solstyle]{solution}
+\renewcommand{\solutionautorefname}{Solution}
+
+\declaretheoremstyle[
+  spaceabove=6pt, spacebelow=6pt,
+  headfont=\normalfont\bfseries,
+  notefont=\mdseries, notebraces={(}{)},
+  bodyfont=\normalfont,
+  postheadspace=1em,
+  numberwithin=section
+]{teststyle}
+\declaretheorem[style=teststyle]{test}
+\renewcommand{\testautorefname}{Test}
 
 %redefine sections for autoref
 \def\chapterautorefname{Chapter}
@@ -107,6 +161,9 @@ frame=single,
 \newcommand{\qi}{\mathbf{i}}
 \newcommand{\qj}{\mathbf{j}}
 \newcommand{\qk}{\mathbf{k}}
+\newcommand{\tg}{\tilde{g}}
+\newcommand{\tv}{\tilde{v}}
+\newcommand{\tz}{\tilde{z}}
 \newcommand{\Order}{\mathcal{O}}
 \newcommand{\order}{\mathcal{o}}
 

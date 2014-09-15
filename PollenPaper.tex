@@ -1,50 +1,58 @@
 \documentclass{article}
 
+\PassOptionsToPackage{firstinits=true,isbn=false,url=false,doi=false,style=numeric,sorting=ydnt}{biblatex}
 \usepackage{elf}
-\graphicspath{{Figures/}}
+\usepackage{array}
+\usepackage{graphicx}
 
-\title{Gene Flow Modelling by Correlated Random Walk}
-\author{E. L. Foster\thanks{BCAM - Basque Center for Applied Mathematics,
-Bilbao, Basque Country - Spain}, D. M. Chan\thanks{Department of Mathematics and
-Applied Mathematics, Virginia Commonwealth University} and R. J.
-Dyer\thanks{Department of Biology, Virginia Commonwealth University}}
-%\address{Department of Mathematics and Applied Mathematics,
-%1015 Floyd Ave., Richmond, VA 23284}
-%\email{dmchan@vcu.edu}
-%\keywords{Gene Flow, Agent Based Modelling, Correlated Random Walk, Pollen}
-%\date{\today}
+%keywords environment
+\def\keywords{\vspace{.5em}
+{\textit{Keywords}:\,\relax%
+}}
+\def\endkeywords{\par}
+
+\addbibresource{PollenPaper.bib}
+
+%\title{Gene Flow Modelling by Correlated Random Walk}
+\title{Model comparison for abiotic versus biotic pollen dispersal}
+
+\author[1]{Erich L Foster}
+\author[2]{David M. Chan}
+\author[3]{Rodney J. Dyer}
+
+\affil[1]{Basque Center for Applied Mathematics, Bilbao, Basque Country -- Spain}
+\affil[2]{Department of Mathematics and Applied Mathematics, Virginia Commonwealth University} 
+\affil[3]{Department of Biology, Virginia Commonwealth University}
 
 \begin{document}
 
-\maketitle
+  \maketitle
 
-\begin{abstract} 
-  Correlated random walk (CRW) models are a model of animal movement
-  \cite{Prasad05} and have been successfully used to explore the movement of
-  animals in varying ecological contexts \cite{Bartumeus07}. In this paper we
-  develop an agent-based model (ABM) is developed to describe pollen-mediated
-  gene flow under a correlated random walk (CRW). This model is used to explore
-  how insect dispersal processes influence the movement of pollen and pollen
-  distribution by the varying turning angle and plant density.
-\end{abstract}
+  \begin{abstract} 
+    We use an agent-based model with a correlated random walk to explore
+    pollination within a forest.  For abiotic dispersal, say via the wind, we
+    use a purely random walk where there is little or no correlation between
+    consecutive steps and for biotic dispersal, say via insect, we use a
+    moderate or highly correlated random walk.  In particular we examine the
+    differences in a number of biological measurement between a purely random
+    walk and a correlated random walk in terms of gene dispersal in low and
+    high plant densities.
+  \end{abstract}
+  \begin{keywords}
+    Gene Flow, Agent Based Modelling, Correlated Random Walk, Pollen
+  \end{keywords}
 
-\section{Introduction}
+  \section{Introduction}
   \input{Intro.tex}
-\section{Methods}
+  \section{Methods}
   \input{Methods.tex}
-\section{Results}
+  \section{Results}
   \input{Results.tex}
-\section{Discussion}
+  \section{Discussion}
   \input{Discussion.tex}
-\subsection*{Acknowledgments}
-This work was performed as a component of the Masters degree for ELF.  Portions
-of this research were supported by a National Science Foundation grant
-(DEB-0640803) to RJD and DMC. The authors would like to thank Rebecca Segal for
-her guidance in developing the code for this project.
+  \subsection*{Acknowledgments}
+    Portions of this research were supported by a National Science Foundation
+    grant (DEB-0640803) to RJD and DMC.
 
-\textcolor{red}{We probably need some more recent citations, since the latest
-one appears to be 2009}
-
-\bibliographystyle{amsplain}
-\bibliography{PollenPaper}
+  \printbibliography
 \end{document}
