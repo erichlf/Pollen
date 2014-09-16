@@ -2,8 +2,8 @@ In this study, an agent-based model simulates the pollination of plants in a
 forest using two interacting agents; one mobile agent, \emph{pollinators or
 animals} and one static, \emph{plants}.  To determine how genes flow we keep
 track of the order of the plants each pollinator interacts with to determine the
-likely genetics of the seed creation.  Next we discuss the specific rules used
-in the model.
+likely genetics of the seed creation. In the following subsections we discuss
+the specific rules used in the model.
 
 \subsection{Movement}
 
@@ -12,20 +12,23 @@ plant to another.  Each step of the pollinator's movement is conducted in two
 stages: \emph{searching} and \emph{movement}.  First, the pollinator checks a
 neighborhood of radius $r$ to see if there are any plants within the
 neighborhood.  If there are one or more plants, the pollinator chooses the
-closest.  It there are two or more that are equidistant from the pollinator, one
+closest.  If there are two or more which are equidistant from the pollinator, one
 is randomly chosen.
 
 If there are no plants within a distance $r$ from the current location of the
 pollinator, the pollinator moves according to a correlated random walk.  For the
 correlated random walk, the direction is chosen based on a probability
 distribution centered about its current direction, see
-\autoref{fig:TurningAngle}.  In the simulations we vary the maximum turning
-angle (AMT) {\bf Erich-Why didn't we call it MTA instead)}.  We relate the
+\cref{fig:TurningAngle}.  In the simulations we vary the maximum turning
+angle (AMT) {\bf Erich-Why didn't we call it MTA instead)} \textcolor{red}{This
+was the standard notation used in previous papers.}.  We relate the
 strength of the correlated random walk with the size of the turning angle.  So
 for a purely random walk AMT is $180^{\circ}$ and there would be no correlation,
 and as AMT decreases the correlation grows stronger.
 {\bf Erich-purely random diffusion should be true for the uniform distribution
 but not the normal distribution, what are the results in the graphs using?}
+\textcolor{red}{I believe the only distribution used on AMT was the uniform
+distribution. In the thesis both were used.}
 
 The pollinator then takes a step with length between 0 and 1 distributed
 uniformly in the new chosen direction.  This length is denoted by $s_j^{(i)}$,
@@ -34,19 +37,24 @@ which is the $j^{th}-$step taken by the $i^{th}$ pollinator.
 \begin{figure}[h!]
   \begin{center}
   \begin{minipage}[b]{0.48\textwidth}
+    \centering
     \includegraphics[scale=0.4]{Figures/UniformTADistribution.pdf}
     \subcaption{Uniform distribution} \label{sfig:Uniform}
   \end{minipage}
+%  \begin{minipage}[b]{0.48\textwidth}
+%    \includegraphics[scale=0.4]{Figures/NormalTADistribution.pdf}
+%    \subcaption{Normal distribution} \label{sfig:Normal}
+%  \end{minipage}
   \begin{minipage}[b]{0.48\textwidth}
-    \includegraphics[scale=0.4]{Figures/NormalTADistribution.pdf}
-    \subcaption{Normal distribution} \label{sfig:Normal}
+    \centering
+    \includegraphics[scale=0.5]{Figures/TurningAngle.pdf}
+    \subcaption{Example path} \label{sfig:TurningAngle}
   \end{minipage}
-  \includegraphics[scale=0.5]{Figures/TurningAngle.pdf}
-  \subcaption{Example path} \label{sfig:TurningAngle}
   \end{center}
-  \caption{Turning Angle for \ref{sfig:Uniform} uniform distribution,
-  \ref{sfig:Normal} normal distribution, and \ref{sfig:TurningAngle} depiction
-  of what a path may look like.}\label{fig:TurningAngle}
+  \caption{Turning Angle for uniform distribution (\cref{sfig:Uniform}),
+  %normal distribution (\cref{sfig:Normal}),
+  and depiction of what a path may look like
+  (\cref{sfig:TurningAngle}).}\label{fig:TurningAngle}
 \end{figure}
 {\bf Erich-Maybe in this figure we should just use the uniform distribution?}
 
@@ -76,25 +84,25 @@ f_{j,k} = \phi \cdot a \cdot \eta^k.
 The amount of food eaten and the amount of pollen collected is proportional to
 the number of visited flowers. Pollinators collect and eat pollen from each
 flower they visit.  The amount of pollen collected and the amount of food eaten
-is proportional to the equation \eqref{flowers}. Let $f^{\left(i\right)}_{j,k}$
+is proportional to \cref{flowers}. Let $f^{\left(i\right)}_{j,k}$
 be the number of flowers visited by the $i^{th}$ pollinator during the $k^{th}$
 visit to the $j^{th}$ plant, then the amount of pollen consumed by the $i^{th}$
 pollinator after $m$ plant visits is given by 
 \begin{equation}
   c^{\left(i\right)}_m = \sum_{j=0}^{m} \beta f^{\left(i\right)}_{j,k},
-  \label{limit} 
-\end{equation} 
+  \label{limit}
+\end{equation}
 where $\beta$ is the proportionality constant for
 the amount of pollen collected at a plant.  Each pollinator has a maximum amount
 of food they will ingest, $c_{max}$, where if they eat that much food they will
-stop searching. 
+stop searching.
 
-The fraction, $\alpha$, of all flowers are pollinated, and the associated
+The fraction, $\alpha$, of all flowers pollinated, and the associated
 probability that a flower is pollinated, $\rho$, are related by the equation,
 \begin{equation} \label{Prob}
   \alpha = \rho \cdot \hat{f}_k.
 \end{equation}
-Using equation \eqref{limit} and \eqref{Prob} we can determine the probability
+Using \cref{limit,Prob} we can determine the probability
 that a flower is pollinated, $\rho$, by the formula
 \begin{equation*}
   \rho = \frac{\alpha}{\phi} \cdot \frac{1 - \eta}{a \cdot \eta}.
@@ -103,8 +111,9 @@ To determine where the pollen originated when a flower is pollinated, we
 consider each flower previously visited but exclude those flowers from the same
 plant as the flower being pollinated.    Self-pollination, is not considered,
 since the likelihood of self-pollination is low due to mechanisms that impedes
-self-pollination. Each other flower considered has an equal likelihood of
-pollinating the current flower, and a flower is chosen at random.
+self-pollination\textcolor{red}{citation is needed}. Each other flower
+considered has an equal likelihood of pollinating the current flower, and a
+flower is chosen at random.
 
 \subsection{Time and Stopping Criteria}
 
@@ -118,8 +127,8 @@ where $T^{\left(i\right)}$ is the number of plants visited by the $i^{th}$
 pollinator. If we let the maximum allowable travel time be $t_{max}$, then once
 $t^{\left(i\right)} \geq t_{max}$ or $c^{\left(i\right)}_m \geq c_{max}$ the
 pollinator is removed from the simulation. $t_{max}$ is based on the optimal
-searching time during the day.  When the pollinator leaves the simulation, it is
-terminated.
+searching time during the day.  When all pollinators leave the simulation, the
+simulation is terminated.
 
 \subsection{Model Statistics}
 
@@ -169,7 +178,7 @@ calculate \emph{Average Pollination Distance}, \emph{Average Maximum Pollination
 Distance}, and \emph{Average Weighted Diversity of Fathers}, which are based on
 the pollination events occurring in the model.  These give a more direct results
 in how gene flow is affected in the model.  The calculations of these statistics
-are given in the \autoref{tab:eqn}.
+are given in the \cref{tab:eqn}.
 
 In these equations it is assumed that $b$ is the number of pollinators, $n$ is
 the total number of plants, $(x_{1,0}^{(i)},x_{2,0}^{(i)})$ is the starting

@@ -37,6 +37,7 @@
 \RequirePackage{multirow}
 \RequirePackage{authblk}
 \RequirePackage{geometry}
+\RequirePackage{cleveref}
 
 % Start of 'ignore natbib' hack
 \let\bibhang\relax
@@ -88,6 +89,9 @@
 \newcommand{\propautorefname}{Proposition}
 \renewcommand{\theoremautorefname}{Theorem}
 \renewcommand{\corollaryautorefname}{Corollary}
+
+\crefname{equation}{equation}{equations}
+\crefname{figure}{figure}{figures}
 
 \declaretheoremstyle[
   spaceabove=6pt, spacebelow=6pt,
