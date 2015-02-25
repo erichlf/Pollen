@@ -20,15 +20,16 @@ pollinator, the pollinator moves according to a correlated random walk.  For the
 correlated random walk, the direction is chosen based on a probability
 distribution centered about its current direction, see
 \cref{fig:TurningAngle}.  In the simulations we vary the maximum turning
-angle (AMT) {\bf Erich-Why didn't we call it MTA instead)} \textcolor{red}{This
-was the standard notation used in previous papers.}.  We relate the
+angle (AMT) %{\bf Erich-Why didn't we call it MTA instead)} \textcolor{red}{This
+%was the standard notation used in previous papers.}.
+We relate the
 strength of the correlated random walk with the size of the turning angle.  So
 for a purely random walk AMT is $180^{\circ}$ and there would be no correlation,
 and as AMT decreases the correlation grows stronger.
-{\bf Erich-purely random diffusion should be true for the uniform distribution
-but not the normal distribution, what are the results in the graphs using?}
-\textcolor{red}{I believe the only distribution used on AMT was the uniform
-distribution. In the thesis both were used.}
+%{\bf Erich-purely random diffusion should be true for the uniform distribution
+%but not the normal distribution, what are the results in the graphs using?}
+%\textcolor{red}{I believe the only distribution used on AMT was the uniform
+%distribution. In the thesis both were used.}
 
 The pollinator then takes a step with length between 0 and 1 distributed
 uniformly in the new chosen direction.  This length is denoted by $s_j^{(i)}$,
@@ -56,7 +57,7 @@ which is the $j^{th}-$step taken by the $i^{th}$ pollinator.
   and depiction of what a path may look like
   (\cref{sfig:TurningAngle}).}\label{fig:TurningAngle}
 \end{figure}
-{\bf Erich-Maybe in this figure we should just use the uniform distribution?}
+%{\bf Erich-Maybe in this figure we should just use the uniform distribution?}
 
 
 Alternatively, if the pollinator is already at a plant, the pollinator picks a
@@ -87,7 +88,7 @@ flower they visit.  The amount of pollen collected and the amount of food eaten
 is proportional to \cref{flowers}. Let $f^{\left(i\right)}_{j,k}$
 be the number of flowers visited by the $i^{th}$ pollinator during the $k^{th}$
 visit to the $j^{th}$ plant, then the amount of pollen consumed by the $i^{th}$
-pollinator after $m$ plant visits is given by 
+pollinator after $m$ plant visits is given by
 \begin{equation}
   c^{\left(i\right)}_m = \sum_{j=0}^{m} \beta f^{\left(i\right)}_{j,k},
   \label{limit}
@@ -111,7 +112,8 @@ To determine where the pollen originated when a flower is pollinated, we
 consider each flower previously visited but exclude those flowers from the same
 plant as the flower being pollinated.    Self-pollination, is not considered,
 since the likelihood of self-pollination is low due to mechanisms that impedes
-self-pollination\textcolor{red}{citation is needed}. Each other flower
+self-pollination%\textcolor{red}{citation is needed}.
+Each other flower
 considered has an equal likelihood of pollinating the current flower, and a
 flower is chosen at random.
 
